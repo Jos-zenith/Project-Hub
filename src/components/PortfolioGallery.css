@@ -1,0 +1,214 @@
+.portfolio-gallery-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #0A0A0B;
+  overflow: hidden;
+  padding: 4rem 2rem;
+}
+
+/* Deep Space Background */
+.deep-space-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(46, 91, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(46, 91, 255, 0.03) 0%, transparent 50%),
+    #0A0A0B;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Floating particles */
+.floating-particle {
+  position: absolute;
+  background: #F4F4F4;
+  border-radius: 50%;
+  opacity: 0.6;
+  filter: blur(0.5px);
+  box-shadow: 0 0 8px rgba(244, 244, 244, 0.3);
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Space depth overlay */
+.space-depth-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 50% 50%, transparent 0%, rgba(10, 10, 11, 0.4) 100%),
+    radial-gradient(circle at 0% 0%, rgba(46, 91, 255, 0.02) 0%, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(46, 91, 255, 0.02) 0%, transparent 60%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Portfolio Item */
+.portfolio-item {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.item-inner {
+  position: relative;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #1A1A1C 0%, #2d2d31 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(46, 91, 255, 0.2);
+  box-shadow: 
+    0 0 20px rgba(46, 91, 255, 0.1),
+    inset 0 0 20px rgba(46, 91, 255, 0.02);
+  transition: all 0.3s ease;
+}
+
+.portfolio-item:hover .item-inner {
+  border-color: rgba(46, 91, 255, 0.5);
+  box-shadow: 
+    0 0 30px rgba(46, 91, 255, 0.3),
+    inset 0 0 20px rgba(46, 91, 255, 0.05);
+}
+
+/* Item Image */
+.item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Item Placeholder */
+.item-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(46, 91, 255, 0.1) 0%, rgba(46, 91, 255, 0.05) 100%);
+  color: rgba(244, 244, 244, 0.4);
+  font-size: 3rem;
+  animation: pulse-placeholder 2s ease-in-out infinite;
+}
+
+@keyframes pulse-placeholder {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Item Overlay */
+.item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 11, 0) 0%,
+    rgba(10, 10, 11, 0.7) 70%,
+    rgba(10, 10, 11, 0.95) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  backdrop-filter: blur(2px);
+}
+
+/* Item Title */
+.item-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #F4F4F4;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+/* Item Description */
+.item-description {
+  font-size: 0.875rem;
+  color: rgba(244, 244, 244, 0.7);
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+}
+
+/* Item Link */
+.item-link {
+  display: inline-block;
+  font-size: 0.875rem;
+  color: #2E5BFF;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(46, 91, 255, 0.3);
+  padding-bottom: 0.25rem;
+}
+
+.item-link:hover {
+  color: #F4F4F4;
+  border-bottom-color: #F4F4F4;
+  text-shadow: 0 0 10px rgba(46, 91, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .portfolio-gallery-container {
+    padding: 2rem 1rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .item-title {
+    font-size: 1rem;
+  }
+
+  .item-description {
+    font-size: 0.75rem;
+  }
+}
+
+/* Enhanced glow effect for accent color accents */
+.portfolio-item:hover .item-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(46, 91, 255, 0.1) 0%,
+    rgba(10, 10, 11, 0.8) 60%,
+    rgba(10, 10, 11, 0.98) 100%
+  );
+}
+
+/* Starlight integration adjustments */
+.sl-content .portfolio-gallery-container {
+  margin: 0 -2rem;
+  padding: 4rem 2rem;
+  background: #0A0A0B;
+}
