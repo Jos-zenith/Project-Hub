@@ -9,7 +9,7 @@ export default defineConfig({
 		react(),
 		starlight({
 			title: 'The Zenith Index',
-			description: 'Premium Digital Archive - Design Portfolio',
+			description: 'Designer Manual and Project Blueprint portfolio',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/ejoszenith' }],
 			sidebar: [
 				{
@@ -17,13 +17,27 @@ export default defineConfig({
 					slug: '',
 				},
 				{
-					label: 'Retail',
+					label: 'Profile',
+					items: [
+						{ label: 'About', slug: 'about' },
+						{ label: 'Experience', slug: 'experience' },
+						{ label: 'Skills', slug: 'skills' },
+					],
+				},
+				{
+					label: 'Projects',
+					items: [
+						{ label: 'Archive Overview', slug: 'projects' },
+					],
+				},
+				{
+					label: 'Retail (Pothys)',
 					items: [
 						{ label: 'Pothys Branding', slug: 'retail/pothys' },
 					],
 				},
 				{
-					label: 'Corporate',
+					label: 'Corporate (Pristine)',
 					items: [
 						{ label: 'Pristine Solutions', slug: 'corporate/pristine' },
 					],
@@ -54,5 +68,4 @@ export default defineConfig({
 			],
 		}),
 	],
-	viewTransitions: true,
 });

@@ -143,6 +143,90 @@ h1, h2, h3, h4, h5, h6 {
   color: #F4F4F4;
 }
 
+.freelance-badge.static-badge {
+  position: static;
+  display: inline-flex;
+}
+
+.home-bento {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.home-bento-main {
+  position: relative;
+  min-height: 320px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(46, 91, 255, 0.22);
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.4);
+}
+
+.home-bento-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.home-bento-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(10, 10, 11, 0.9), rgba(10, 10, 11, 0.15));
+}
+
+.home-bento-overlay h3 {
+  margin: 0 0 0.35rem;
+}
+
+.home-bento-overlay p {
+  margin: 0;
+  color: #E0E0E0;
+}
+
+.home-bento-side {
+  background: linear-gradient(145deg, rgba(26, 26, 28, 0.88), rgba(12, 12, 13, 0.95));
+  border: 1px solid rgba(46, 91, 255, 0.25);
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.bento-note {
+  margin: 0;
+  color: #E0E0E0;
+}
+
+.stack-chips,
+.badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0 0;
+}
+
+.stack-chip,
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #1A1A1C;
+  color: #F4F4F4;
+  border: 1px solid rgba(46, 91, 255, 0.35);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.82rem;
+}
+
+.badge-pill {
+  font-family: 'JetBrains Mono', monospace;
+}
+
 /* Tools Marquee */
 .tools-marquee {
   overflow: hidden;
@@ -325,4 +409,21 @@ h1, h2, h3, h4, h5, h6 {
 
 .cursor-spotlight.active {
   opacity: 1;
+}
+
+@media (max-width: 960px) {
+  .home-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .home-bento-main {
+    min-height: 240px;
+  }
+
+  .freelance-badge {
+    top: 12px;
+    right: 12px;
+    font-size: 0.78rem;
+    padding: 6px 12px;
+  }
 }
