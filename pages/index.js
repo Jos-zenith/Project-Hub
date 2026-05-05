@@ -6,6 +6,8 @@ import About from '../components/About'
 import Contact from '../components/Contact'
 import Timeline from '../components/Timeline'
 import ProjectCard from '../components/ProjectCard'
+import StatsMarquee from '../components/StatsMarquee'
+import Achievements from '../components/Achievements'
 import { blogPosts, communityImpact, experiences, personal, projects, skillProgress, skills, stats, testimonials } from '../data/site'
 
 function BlogCard({ post }) {
@@ -27,6 +29,7 @@ const tabs = [
   { id: 'projects', label: 'Projects', icon: '💼' },
   { id: 'experience', label: 'Experience', icon: '⚡' },
   { id: 'skills', label: 'Skills', icon: '🧩' },
+  { id: 'achievements', label: 'Achievements', icon: '🏆' },
   { id: 'impact', label: 'Impact', icon: '🌍' },
   { id: 'blog', label: 'Blog', icon: '📝' },
   { id: 'contact', label: 'Contact', icon: '✉️' }
@@ -52,43 +55,60 @@ export default function Home() {
     switch (activeTab) {
       case 'overview':
         return (
-          <div className="grid gap-8">
+          <div className="grid gap-8 pb-8">
             <Hero />
+            <StatsMarquee />
             <div className="grid gap-4 rounded-[1.75rem] border border-black/5 bg-white p-6 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
-              {stats.map(stat => (
-                <div key={stat} className="rounded-2xl bg-offwhite/70 p-4 text-center">
-                  <div className="text-lg font-heading text-primary">{stat}</div>
-                </div>
+              {stats.slice(0, 4).map((stat, i) => (
+                <motion.div
+                  key={stat}
+                  className="rounded-2xl bg-offwhite/70 p-4 text-center"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                >
+                  <div className="text-lg font-heading font-bold text-primary">{stat}</div>
+                </motion.div>
               ))}
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
-              <div className="rounded-[1.75rem] border border-black/5 bg-white p-6 shadow-sm">
+              <motion.div
+                className="rounded-[1.75rem] border border-black/5 bg-white p-6 shadow-sm"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+              >
                 <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary/70">Quick profile</p>
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
                   <div>
                     <p className="text-sm text-charcoal/60">Name</p>
-                    <p className="mt-1 font-heading text-lg text-charcoal">{personal.name}</p>
+                    <p className="mt-1 font-heading font-bold text-lg text-charcoal">{personal.name}</p>
                   </div>
                   <div>
                     <p className="text-sm text-charcoal/60">Location</p>
-                    <p className="mt-1 font-heading text-lg text-charcoal">{personal.location}</p>
+                    <p className="mt-1 font-heading font-bold text-lg text-charcoal">{personal.location}</p>
                   </div>
                   <div>
                     <p className="text-sm text-charcoal/60">Email</p>
-                    <p className="mt-1 break-words font-heading text-lg text-charcoal">{personal.email}</p>
+                    <p className="mt-1 break-words font-heading font-bold text-lg text-charcoal">{personal.email}</p>
                   </div>
                   <div>
                     <p className="text-sm text-charcoal/60">Phone</p>
-                    <p className="mt-1 font-heading text-lg text-charcoal">{personal.phone}</p>
+                    <p className="mt-1 font-heading font-bold text-lg text-charcoal">{personal.phone}</p>
                   </div>
                 </div>
-              </div>
-              <div className="rounded-[1.75rem] border border-black/5 bg-gradient-to-br from-primary/10 to-turmeric/15 p-6 shadow-sm">
+              </motion.div>
+              <motion.div
+                className="rounded-[1.75rem] border border-black/5 bg-gradient-to-br from-primary/10 to-turmeric/15 p-6 shadow-sm"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.25 }}
+              >
                 <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary/70">Portfolio Mode</p>
                 <p className="mt-4 text-lg leading-8 text-charcoal/80">
                   This version uses tabs so each story sits in its own panel instead of stacking everything into a long scroll.
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
         )
@@ -98,14 +118,43 @@ export default function Home() {
         return (
           <section>
             <PanelHeading subtitle="Projects" title="Selected work and competition builds." />
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {projects.map(project => (
-                <ProjectCard key={project.slug} project={project} />
-              ))}
-            </div>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.05
+                  }
+                }
+              }}
+              className="grid gap-6 md:grid-cols-2"
+            >
+              {projects.map((project, i) => {
+                const isFlagship = project.slug === 'parkin-today'
+                return (
+                  <motion.div
+                    key={project.slug}
+                    className={isFlagship ? 'md:col-span-2' : ''}
+                    variants={{
+                      hidden: { opacity: 0, y: 16 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                    }}
+                  >
+                    <ProjectCard project={project} />
+                  </motion.div>
+                )
+              })}
+            </motion.div>
             <div className="mt-8 grid gap-6 lg:grid-cols-3">
-              {projects.slice(0, 3).map(project => (
-                <div key={`dashboard-${project.slug}`} className="rounded-[1.75rem] border border-black/5 bg-white p-6 shadow-sm">
+              {projects.slice(0, 3).map((project, i) => (
+                <motion.div
+                  key={`dashboard-${project.slug}`}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.08 }}
+                  className="rounded-[1.75rem] border border-black/5 bg-white p-6 shadow-sm"
+                >
                   <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary/60">{project.title}</p>
                   <div className={`mt-4 rounded-[1.5rem] bg-gradient-to-br ${project.theme} p-5`}>
                     <div className="flex items-center justify-between gap-3">
@@ -131,7 +180,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </section>
@@ -186,6 +235,8 @@ export default function Home() {
             </div>
           </section>
         )
+      case 'achievements':
+        return <Achievements />
       case 'impact':
         return (
           <section className="grid gap-6 lg:grid-cols-2">

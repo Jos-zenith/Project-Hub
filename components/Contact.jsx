@@ -51,10 +51,44 @@ export default function Contact(){
           </div>
         </div>
         <form onSubmit={handleSubmit} className="grid gap-3 rounded-[1.75rem] border border-black/5 bg-white p-6 shadow-sm">
-          <h3 className="text-xl font-heading text-primary">Send a message</h3>
-          <input name="name" placeholder="Your name" required className="rounded-2xl border border-black/10 bg-offwhite/60 p-3 outline-none transition focus:border-primary" />
-          <input name="email" placeholder="Your email" required className="rounded-2xl border border-black/10 bg-offwhite/60 p-3 outline-none transition focus:border-primary" />
-          <textarea name="message" placeholder="Message" required className="rounded-2xl border border-black/10 bg-offwhite/60 p-3 outline-none transition focus:border-primary" rows="6" />
+          <style>{`
+            .form-input {
+              background: transparent;
+              border: none;
+              border-bottom: 1.5px solid #999;
+              padding: 0.75rem 0;
+              outline: none;
+              font-size: 1rem;
+              transition: border-color 0.2s ease;
+            }
+            .form-input::placeholder {
+              color: #999;
+            }
+            .form-input:focus {
+              border-bottom-color: #800020;
+            }
+            .form-textarea {
+              background: transparent;
+              border: none;
+              border-bottom: 1.5px solid #999;
+              padding: 0.75rem 0;
+              outline: none;
+              font-size: 1rem;
+              font-family: 'Lora', serif;
+              transition: border-color 0.2s ease;
+              resize: vertical;
+            }
+            .form-textarea::placeholder {
+              color: #999;
+            }
+            .form-textarea:focus {
+              border-bottom-color: #800020;
+            }
+          `}</style>
+          <h3 className="text-xl font-heading font-bold text-primary">Send a message</h3>
+          <input name="name" placeholder="Your name" required className="form-input text-charcoal" />
+          <input name="email" type="email" placeholder="Your email" required className="form-input text-charcoal" />
+          <textarea name="message" placeholder="Message" required className="form-textarea text-charcoal" rows="6" />
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <button type="submit" className="rounded-full bg-primary px-5 py-3 text-white transition hover:bg-[#6c001a]">Send</button>
             {status === 'sending' && <span className="text-sm text-charcoal/60">Sending...</span>}

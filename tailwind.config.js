@@ -13,7 +13,7 @@ module.exports = {
         offwhite: '#F5F5F5'
       },
       fontFamily: {
-        heading: ['Montserrat', 'sans-serif'],
+        heading: ['Cormorant Garamond', 'serif'],
         body: ['Lora', 'serif'],
         fun: ['Baloo 2', 'cursive']
       }
