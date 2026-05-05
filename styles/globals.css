@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --color-primary: #800020;
+  --color-turmeric: #FFD700;
+  --color-emerald: #228B22;
+  --color-charcoal: #333333;
+  --color-offwhite: #F5F5F5;
+}
+
+html,body,#__next{height:100%;}
+body{font-family: 'Lora', serif; background:linear-gradient(180deg, #fbf7f3 0%, #f5f5f5 40%, #f2ede7 100%); color:var(--color-charcoal)}
+.font-heading{font-family: 'Montserrat', sans-serif}
+.font-fun{font-family: 'Baloo 2', cursive}
+
+::selection{background:rgba(128,0,32,0.15); color:var(--color-charcoal)}
+
+a{text-decoration:none}
+
+.hover\:text-turmeric:hover{color:var(--color-turmeric)}
